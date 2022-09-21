@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/css/fontawesome/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css" >
+    <link rel="stylesheet" type="text/css" href="/css/graph.css" >
+    <title>Chart</title>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+
+</head>
+<body>
+<div th:replace="/ines/fragments/navbars/chartNavbar :: navbar"></div>
+<div class="container">
+        <div class="d-flex">
+            <h2>Chart for [[${currentYear}]]</h2>
+        </div>
+        <div class="d-flex">
+            <div id="selectYear" class="p-2">
+                <p>Select Sheet Year:</p>
+            </div>
+            <div class="p-2">
+                <form th:action="@{/ines/excel/chart}" th:object="${sheetYear}" method="post">
+                    <select class="form-control" id="year" name="year" onchange="this.form.submit()">
+                        <option th:each="year : ${sheetYears}" th:value="${year}" th:text="${year}" th:selected="${year == currentYear}">
+
+                        </option>
+                    </select>
+                </form>
+            </div>
+        </div>
+        <div class="myChartDiv">
+            <canvas id="myChart" width="900" height="600"></canvas>
+        </div>
+</div>
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+        var employees = [[${employees}]]
+
+
+    </script>
+    <script th:src="@{/js/graphTest.js}"></script>
+    <script th:src="@{/js/navbar.js}"></script>
+</th:block>
+    <script type="text/javascript" src="/js/jquery-3.6.0.js"></script>
+    <script type="text/javascript" src="/js/bootstrap/bootstrap.min.js"></script>
+
+</body>
+</html>

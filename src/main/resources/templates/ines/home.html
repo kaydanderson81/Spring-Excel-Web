@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/css/fontawesome/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css" >
+    <link rel="stylesheet" type="text/css" href="/css/ines.css" >
+    <title>InES Employee</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+</head>
+<body>
+<div th:replace="/ines/fragments/navbars/chartNavbar :: navbar"></div>
+<div class="container">
+    <h2>InES Server Page</h2>
+    <div class="subContainer">
+        <div id="squareButtons" class="wrap">
+            <a class="btn" href="#" th:href="@{/ines/excel/employees}">Employees</a>
+            <a class="btn" href="#" th:href="@{/ines/excel/projects}">Projects</a>
+            <a class="btn" href="#" th:href="@{/ines/excel/chart}">Charts</a>
+        </div>
+    </div>
+
+</div>
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+        var employees = [[${employees}]]
+
+
+    </script>
+    <script th:src="@{/js/graphTest.js}"></script>
+    <script th:src="@{/js/navbar.js}"></script>
+</th:block>
+<script type="text/javascript" src="/js/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="/js/bootstrap/bootstrap.min.js"></script>
+</body>
+</html>

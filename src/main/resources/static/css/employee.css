@@ -1,0 +1,14 @@
+#employee {
+     border: 2px solid #69abde;
+     padding: 1px;
+     margin-bottom: 40px;
+    }
+
+#employee div {
+    margin: 10px;
+}
+
+#projectInfo {
+    margin: 8px auto;
+    width: 95%;
+}
