@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -27,32 +26,31 @@ public class EmployeeController {
     String excelPath = "./data/22_07_20__Mitarbeiterplanung_InES_BH.xlsx";
     String sheet = Year.now().format(DateTimeFormatter.ofPattern("yyyy"));
 
-    @GetMapping("/home")
-    public String showHomePage(Model model) throws IOException {
 
+    @GetMapping("/home")
+    public String showHomePage() {
         return "/ines/home.html";
     }
 
     @GetMapping("/employees")
     public String showEmployeeList(Model model) throws ParseException, IOException {
-        ExcelUtils excel = new ExcelUtils(this.excelPath, this.sheet);
+        new ExcelUtils(this.excelPath, this.sheet);
         List<Employee> employees = EmployeeUtils.getEmployeeInformation();
         model.addAttribute("employees", employees);
         return "/ines/employee.html";
     }
 
     @GetMapping("/projects")
-    public String showProjectList(Model model) throws ParseException, IOException {
-        ExcelUtils excel = new ExcelUtils(this.excelPath, this.sheet);
-        List<Employee> employees = EmployeeUtils.getEmployeeInformation();
-        model.addAttribute("employees", employees);
+    public String showProjectList(Model model) {
+        new ExcelUtils(this.excelPath, this.sheet);
+        List<Project> projects = ProjectUtils.getListOfProjects();
+        model.addAttribute("projects", projects);
         return "/ines/projects.html";
     }
 
     @GetMapping("/chart")
     public String reloadChartWithYear(Model model) throws IOException, ParseException {
-
-        ExcelUtils excel = new ExcelUtils(this.excelPath, this.sheet);
+        new ExcelUtils(this.excelPath, this.sheet);
         List<Employee> employees = EmployeeUtils.getEmployeeInformation();
 
         List<String> sheetYears = ExcelUtils.getStringSheetYears();
@@ -65,7 +63,7 @@ public class EmployeeController {
     @PostMapping("/chart")
     public String reloadChartWithYear(@ModelAttribute("sheetYear") SheetYear sheetYear,
                                       Model model) throws IOException, ParseException {
-        ExcelUtils excel = new ExcelUtils(this.excelPath, sheetYear.getYear());
+        new ExcelUtils(this.excelPath, sheetYear.getYear());
         List<Employee> employees = EmployeeUtils.getEmployeeInformation();
 
         List<String> sheetYears = ExcelUtils.getStringSheetYears();
@@ -77,8 +75,10 @@ public class EmployeeController {
     }
 
     public static void main(String[] args) throws IOException, ParseException {
-        ExcelUtils excel = new ExcelUtils("./data/22_07_20__Mitarbeiterplanung_InES_BH.xlsx", "2022");
-//        ProjectUtils.getOnlyListOfProjects();
+        new ExcelUtils("./data/22_07_20__Mitarbeiterplanung_InES_BH.xlsx", "2022");
+        List<Project> projects = ProjectUtils.getListOfProjects();
+        System.out.println("Projects: " + projects);
+
 
     }
 

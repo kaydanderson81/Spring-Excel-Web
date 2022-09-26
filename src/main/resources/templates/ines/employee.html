@@ -34,6 +34,16 @@
                         <a th:text="${employee.contractTo}"></a>
                     </p>
                 </div>
+                <div>
+                    Total Employee Months:
+                    <a  th:style="${employee.totalProjectMonths > 12.0 ? 'color: red;' : _ }"
+                       th:text="${employee.totalProjectMonths}">
+                    </a>
+                    <a id="totalMonth">
+                        <th:block th:if="${employee.totalProjectMonths > 12.0}">Check Month From/To Column!</th:block>
+                    </a>
+
+                </div>
             </div>
             <table id="projectInfo" class="table table-bordered">
                 <tr>
@@ -44,6 +54,7 @@
                     <th>Month From</th>
                     <th>Month To</th>
                     <th>Person Months</th>
+                    <th>Project Months</th>
                 </tr>
                 <tr th:each="project: ${employee.projects}">
                     <td th:text="${project.projectId}">Id: </td>
@@ -52,10 +63,17 @@
                     <td th:text="${project.endDate}">End Date: </td>
                     <td th:text="${project.monthFrom}">Month From: </td>
                     <td th:text="${project.monthTo}">Month To: </td>
-                    <td th:text="${project.projectMonths}">Person Months: </td>
+                    <td th:text="${project.personMonths}">Person Months: </td>
+                    <td th:text="${project.projectLength}">Project Length: </td>
                 </tr>
             </table>
         </div>
+<!--        <div th:each="month : ${employee.projects}" th:if="month.">-->
+<!--            <p>-->
+<!--                <a></a>-->
+<!--            </p>-->
+
+<!--        </div>-->
     </div>
 </div>
 <th:block layout:fragment="script">

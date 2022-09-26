@@ -1,8 +1,5 @@
 package com.excel.app.utils;
 
-import com.excel.app.model.Employee;
-import com.excel.app.model.Project;
-import com.excel.app.model.SheetYear;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -10,8 +7,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
 import java.io.IOException;
 import java.text.NumberFormat;
-import java.text.ParseException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 
 public class ExcelUtils {
@@ -79,15 +77,22 @@ public class ExcelUtils {
         return sheetNames;
     }
 
-    public static List<SheetYear> getSheetYears() throws IOException {
-        List<String> years = getStringSheetYears();
-        List<SheetYear> sheetNames = new ArrayList<>();
-        for (String year : years) {
-            SheetYear sheetYear = new SheetYear(year);
-            sheetNames.add(sheetYear);
+    public static double returnNumberOfCharInAString(String string, String replace) throws NumberFormatException {
+        int totalPlus = 0;
+        char temp;
+        for (int i = 0; i < string.length(); i++) {
+
+            temp = string.charAt(i);
+            if (temp == '+')
+                totalPlus++;
         }
 
-        return sheetNames;
+        String newMonths = string.replace(replace, " ");
+        List<Double> monthList = new ArrayList<>();
+        for (int i=0; i<= totalPlus; i++) {
+            monthList.add(Double.valueOf(newMonths.split(" ")[i]));
+        }
+        return monthList.stream().mapToDouble(f -> f).sum();
     }
 
 }

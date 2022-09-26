@@ -36,13 +36,19 @@ public class EmployeeUtils {
 
             if (name.contains("50%")) {
                 for (Project project : projects) {
-                    Number projectsMonths = project.getProjectMonths();
+                    Number projectsMonths = project.getPersonMonths();
                     double halfMonths = projectsMonths.doubleValue() / 2.0;
-                    project.setProjectMonths(halfMonths);
+                    project.setPersonMonths(halfMonths);
                 }
 
             }
             employee.setProjects(projects);
+            double total = 0;
+            for (Project project : projects) { //need to fix this
+                double months = project.getPersonMonths();
+                total += months;
+            }
+            employee.setTotalProjectMonths(total);
             employees.add(employee);
         }
 
@@ -91,5 +97,6 @@ public class EmployeeUtils {
             }
         }
         return count + 9;
+
     }
 }

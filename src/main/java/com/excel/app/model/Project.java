@@ -10,7 +10,9 @@ public class Project {
     private String endDate;
     private double monthFrom;
     private double monthTo;
-    private double projectMonths;
+    private double personMonths;
+    private double projectLength;
+    private double bookedPersonMonths;
 
     private List<Employee> employees;
 
@@ -18,34 +20,25 @@ public class Project {
 
     }
 
-    public Project(String projectId, String projectName, String startDate, String endDate, double monthFrom, double monthTo, double projectMonths, List<Employee> employees) {
+    public Project(String projectId, String projectName, String startDate, String endDate, double monthFrom, double monthTo, double personMonths, double projectLength, List<Employee> employees) {
         this.projectId = projectId;
         this.projectName = projectName;
         this.startDate = startDate;
         this.endDate = endDate;
         this.monthFrom = monthFrom;
         this.monthTo = monthTo;
-        this.projectMonths = projectMonths;
+        this.personMonths = personMonths;
+        this.projectLength = projectLength;
         this.employees = employees;
     }
 
-    public Project(String projectId, String projectName, String startDate, String endDate, double projectMonths, List<Employee> employees) {
+    public Project(String projectId, String projectName, String startDate, String endDate, double projectLength, double bookedPersonMonths) {
         this.projectId = projectId;
         this.projectName = projectName;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.projectMonths = projectMonths;
-        this.employees = employees;
-    }
-
-    public Project(String projectId, String projectName, String startDate, String endDate, double monthFrom, double monthTo, double projectMonths) {
-        this.projectId = projectId;
-        this.projectName = projectName;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.monthFrom = monthFrom;
-        this.monthTo = monthTo;
-        this.projectMonths = projectMonths;
+        this.projectLength = projectLength;
+        this.bookedPersonMonths = bookedPersonMonths;
     }
 
 
@@ -97,12 +90,28 @@ public class Project {
         this.endDate = endDate;
     }
 
-    public double getProjectMonths() {
-        return projectMonths;
+    public double getPersonMonths() {
+        return personMonths;
     }
 
-    public void setProjectMonths(double projectMonths) {
-        this.projectMonths = projectMonths;
+    public void setPersonMonths(double personMonths) {
+        this.personMonths = personMonths;
+    }
+
+    public double getProjectLength() {
+        return projectLength;
+    }
+
+    public void setProjectLength(double projectLength) {
+        this.projectLength = projectLength;
+    }
+
+    public double getBookedPersonMonths() {
+        return bookedPersonMonths;
+    }
+
+    public void setBookedPersonMonths(double bookedPersonMonths) {
+        this.bookedPersonMonths = bookedPersonMonths;
     }
 
     public List<Employee> getEmployees() {
@@ -120,14 +129,17 @@ public class Project {
                 ", projectName='" + projectName + '\'' +
                 ", startDate='" + startDate + '\'' +
                 ", endDate='" + endDate + '\'' +
-                ", monthFrom='" + monthFrom + '\'' +
-                ", monthTo='" + monthTo + '\'' +
-                ", projectMonths=" + projectMonths +
-                ", employee=" + employees +
+                ", monthFrom=" + monthFrom +
+                ", monthTo=" + monthTo +
+                ", personMonths=" + personMonths +
+                ", projectLength=" + projectLength +
+                ", bookedPersonMonths=" + bookedPersonMonths +
+                ", employees=" + employees +
                 '}';
     }
 
     public boolean isEmpty() {
-        return projectId != null && projectName != null && startDate != null && endDate != null && monthFrom > 0 && monthTo > 0 && projectMonths > 0;
+        return projectId != null && projectName != null && startDate != null && endDate != null && monthFrom > 0 &&
+                monthTo > 0 && personMonths > 0 && bookedPersonMonths > 0;
     }
 }

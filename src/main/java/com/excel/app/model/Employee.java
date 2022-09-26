@@ -8,16 +8,18 @@ public class Employee {
     private String name;
     private String contractFrom;
     private String contractTo;
+    private double totalProjectMonths;
     private List<Project> projects;
 
     public Employee() {
 
     }
 
-    public Employee(String name, String contractFrom, String contractTo, List<Project> projects) {
+    public Employee(String name, String contractFrom, String contractTo, double totalProjectMonths, List<Project> projects) {
         this.name = name;
         this.projects = projects;
         this.contractFrom = contractFrom;
+        this.totalProjectMonths = totalProjectMonths;
         this.contractTo = contractTo;
     }
 
@@ -44,6 +46,15 @@ public class Employee {
     public void setContractTo(String contractTo) {
         this.contractTo = contractTo;
     }
+
+    public double getTotalProjectMonths() {
+        return totalProjectMonths;
+    }
+
+    public void setTotalProjectMonths(double totalProjectMonths) {
+        this.totalProjectMonths = totalProjectMonths;
+    }
+
     public List<Project> getProjects() {
         return projects;
     }
@@ -56,9 +67,10 @@ public class Employee {
     public String toString() {
         return "Employee{" +
                 "name='" + name + '\'' +
-                ", projects=" + projects +
                 ", contractFrom='" + contractFrom + '\'' +
                 ", contractTo='" + contractTo + '\'' +
+                ", totalProjectMonths=" + totalProjectMonths +
+                ", projects=" + projects +
                 '}';
     }
 }

@@ -20,39 +20,23 @@
         <h2 class="display-4">Projects Table</h2>
     </header>
     <div class="row">
-        <div th:each="employee : ${employees}" th:id="employee">
-<!--            <div>-->
-<!--                <div>-->
-<!--                    <p>Employee Name:-->
-<!--                        <a th:text="${employee.name}"></a>-->
-<!--                    </p>-->
-<!--                </div>-->
-<!--                <div>-->
-<!--                    <p>Contracted From:-->
-<!--                        <a th:text="${employee.contractFrom}"></a>-->
-<!--                        - To:-->
-<!--                        <a th:text="${employee.contractTo}"></a>-->
-<!--                    </p>-->
-<!--                </div>-->
-<!--            </div>-->
+        <div>
             <table id="projectInfo" class="table table-bordered">
                 <tr>
                     <th>Project Id</th>
                     <th>Project Name</th>
                     <th>Start Date</th>
                     <th>End Date</th>
-                    <th>Month From</th>
-                    <th>Month To</th>
-                    <th>Person Months</th>
+                    <th>Total Person Months</th>
+                    <th>Project Length</th>
                 </tr>
-                <tr th:each="project: ${employee.projects}">
+                <tr th:each="project: ${projects}">
                     <td th:text="${project.projectId}">Id: </td>
                     <td th:text="${project.projectName}">Project Name: </td>
                     <td th:text="${project.startDate}">Start Date: </td>
                     <td th:text="${project.endDate}">End Date: </td>
-                    <td th:text="${project.monthFrom}">Month From: </td>
-                    <td th:text="${project.monthTo}">Month To: </td>
-                    <td th:text="${project.projectMonths}">Person Months: </td>
+                    <td th:text="${project.bookedPersonMonths}" th:style="${project.bookedPersonMonths > project.projectLength ? 'color: red;' : _ }">Person Months: </td>
+                    <td th:text="${project.projectLength}">Project Length: </td>
                 </tr>
             </table>
         </div>

@@ -1,4 +1,5 @@
 // extracts the labels, the employee names
+console.log(employees);
 const labels = employees.reduce(function(result, item) {
   result.push(item.name);
   return result;
@@ -28,7 +29,7 @@ employees.forEach(function(item) {
     const prj = projects[prjName];
     const empPrj = item.projects.filter(el => el.projectName === prjName);
     if (empPrj.length) {
-      prj.data.push(empPrj[0].projectMonths);
+      prj.data.push(empPrj[0].personMonths);
     } else {
       prj.data.push(0);
     }

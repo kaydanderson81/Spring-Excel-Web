@@ -12,3 +12,7 @@
     margin: 8px auto;
     width: 95%;
 }
+
+#totalMonth {
+    color: red;
+}
